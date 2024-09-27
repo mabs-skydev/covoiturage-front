@@ -43,13 +43,13 @@ const Rides = ({ user }) => {
 
 	}
 
-	const statusButton = (users) => {
-		const current = users.find(u => u.user === user._id);
+	const statusButton = (ride) => {
+		const current = ride.users.find(u => u.user === user._id);
 
 		if (current.status === "accepted") return <Button variant="success" disabled>Votre demande a été accepter</Button>;
 		if (current.status === "rejected") return <Button variant="secondary" disabled>Votre demande a été réfuser</Button>;
 
-		return <Button variant="danger" onClick={e => handleCancelRide(current._id)}>Retirer votre réservation</Button>;
+		return <Button variant="danger" onClick={e => handleCancelRide(ride._id)}>Retirer votre réservation</Button>;
 	}
 
 	return (
@@ -65,7 +65,7 @@ const Rides = ({ user }) => {
 							user !== null && <>
 								{
 									ride.users.some(u => u.user === user._id) ?
-										statusButton(ride.users)
+										statusButton(ride)
 										:
 										<Button variant="primary" onClick={e => handleBookRide(ride._id)}>Réserver une place</Button>
 								}

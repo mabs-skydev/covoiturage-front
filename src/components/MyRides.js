@@ -80,7 +80,7 @@ const MyRides = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{ride.users.map(u => <tr>
+							{ride.users.map(u => <tr key={u._id}>
 								<td>{u.user.firstname} {u.user.lastname}</td>
 								<td>{u.status === "pending" ? <>
 									<Button onClick={e => handleManageRideRequest(ride._id, u._id, 'accepted')} variant='success' className='mx-3'>Accepter</Button>
